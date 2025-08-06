@@ -1,24 +1,12 @@
-import * as PIXI from "pixi.js";
-import Player from "./player";
-import Zombie from "./zombie";
-//import Matter from "matter-js";
+import * as PIXI from 'pixi.js';
+import { SlotMachine } from './slotMachine.js';
 
-let canvasSize = 256;
-const canvas = document.getElementById("mycanvas");
 const app = new PIXI.Application({
-  //будуємо сцену
-  view: canvas,
-  width: canvasSize,
-  height: canvasSize,
-  backgroundColor: 0x5c812f,
+  width: 600,
+  height: 600,
+  backgroundColor: 0x222222,
 });
+document.body.appendChild(app.view);
 
-let player = new Player({ app }); //створюємо гравця
-let zombie = new Zombie({ app, player }); //створюємо зомбі
-
-app.ticker.add((delta) => {
-  player.update(); //оновлюємо гравця
-  zombie.update(); //оновлюємо зомбі
-});
-
-
+const slot = new SlotMachine(app);
+slot.start();
